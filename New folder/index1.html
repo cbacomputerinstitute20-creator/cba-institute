@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Quiz</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1><b><font color="red">CBA Computer Institute</font></b></h1>
+    <h1>Student Quiz</h1>
+    
+    <div id="start-screen">
+      <label for="studentName">Enter your name:</label>
+      <input type="text" id="studentName" />
+      <button id="startBtn">Start Quiz</button>
+    </div>
+
+    <div id="quiz" style="display:none;">
+      <p id="question">Question text</p>
+      <div id="options"></div>
+      <button id="submit">Submit</button>
+    </div>
+
+    <div id="result"></div>
+    <div id="last-score"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

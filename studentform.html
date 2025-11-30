@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Database</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        form { display: flex; flex-direction: column; align-items: center; display: none; }
+        input, select { margin: 5px; padding: 8px; width: 100%; max-width: 400px; }
+        button { padding: 10px; margin-top: 10px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Database</h1>
+        <button onclick="toggleForm()">Show/Hide Student Form</button>
+        <form id="studentForm">
+            <input type="text" placeholder="Name" id="name" required>
+            <input type="text" placeholder="Father's Name" id="fatherName" required>
+            <input type="text" placeholder="Mother's Name" id="motherName" required>
+            <input type="date" id="dob" required>
+            <input type="text" placeholder="Caste" id="caste">
+            <input type="text" placeholder="Course" id="course" required>
+            <input type="file" id="photo" accept="image/*" required>
+            <input type="file" id="signature" accept="image/*" required>
+            <input type="text" placeholder="Aadhar Number" id="aadhar" required>
+            <input type="tel" placeholder="Mobile Number" id="mobile" required>
+            <button type="button" onclick="saveRecord()">Save Record</button>
+            <button type="button" onclick="clearForm()">New Record</button>
+        </form>
+        <h2>Stored Records</h2>
+        <button onclick="printRecords()">Print Records</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>DOB</th>
+                    <th>Caste</th>
+                    <th>Course</th>
+                    <th>Aadhar</th>
+                    <th>Mobile</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="recordList"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function saveRecord() {
+            let student = {
+                name: document.getElementById('name').value,
+                fatherName: document.getElementById('fatherName').value,
+                motherName: document.getElementById('motherName').value,
+                dob: document.getElementById('dob').value,
+                caste: document.getElementById('caste').value,
+                course: document.getElementById('course').value,
+                aadhar: document.getElementById('aadhar').value,
+                mobile: document.getElementById('mobile').value
+            };
+            
+            let records = JSON.parse(localStorage.getItem('students')) || [];
+            records.push(student);
+            localStorage.setItem('students', JSON.stringify(records));
+            displayRecords();
+            clearForm();
+        }
+        
+        function displayRecords() {
+            let recordList = document.getElementById('recordList');
+            recordList.innerHTML = '';
+            let records = JSON.parse(localStorage.getItem('students')) || [];
+            
+            records.forEach((record, index) => {
+                let row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${record.name}</td>
+                    <td>${record.fatherName}</td>
+                    <td>${record.motherName}</td>
+                    <td>${record.dob}</td>
+                    <td>${record.caste}</td>
+                    <td>${record.course}</td>
+                    <td>${record.aadhar}</td>
+                    <td>${record.mobile}</td>
+                    <td><button onclick="deleteRecord(${index})">Delete</button></td>
+                </tr>`;
+                recordList.innerHTML += row;
+            });
+        }
+        
+        function deleteRecord(index) {
+            let records = JSON.parse(localStorage.getItem('students')) || [];
+            records.splice(index, 1);
+            localStorage.setItem('students', JSON.stringify(records));
+            displayRecords();
+        }
+        
+        function printRecords() {
+            window.print();
+        }
+        
+        function clearForm() {
+            document.getElementById('studentForm').reset();
+        }
+        
+        function toggleForm() {
+            let form = document.getElementById('studentForm');
+            form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+        }
+        
+        displayRecords();
+    </script>
+</body>
+</html>
