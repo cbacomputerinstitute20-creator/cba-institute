@@ -1,92 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Education Portal</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #0073e6;
-            color: #fff;
-            padding: 10px;
-            margin: 0;
-            text-align: center;
-            line-height: 0%;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            background: #005bb5;
-        }
-        nav ul li {
-            margin: 30px;
-        }
-        nav ul li a {
-            color: rgb(240, 81, 7);
-            text-decoration: none;
-            padding: 20px;
-            background-color: #005bb5;
-            transition: background-color 0.5s
-            
-       
-        
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CBA Computer Institute – Learn Office Operations, Digital Skills, and Computer Certifications.">
+<meta name="keywords" content="Computer Institute, CBA, Digital Skills, Office Operations, IT Courses">
+<title>CBA Computer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-      
-        }
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Questrial&display=swap" rel="stylesheet">
+<!-- Swiper JS CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="styles.css">
 
-        nav ul li a:hover {
-            background-color: rgb(10, 10, 9);
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: #0073e6;
-            color: white;
-            margin-top: 20px;
-        }
-        dd{
-            justify-items: center;
+<style>
 
-        }
-    </style>
+</style>
 </head>
 <body>
-    <header>
-        <h1>CBA Computer Institute</h1><br>
-        <h2>Dhakiya Road Kundeshwari Kashipur Udham Singh Nagar</h2><br>
-        <h3>Uttarakhand</h3>
-        <nav> 
-            <ul>
-                
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Cources</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="abc.html">Study material</a></li>
-                <li><a href="student verification.html">Certificate verification</a></li>
-                <li><a href="abc.html">Exam Zone</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
-    </header>
-    <cc><h1><font color=""blue"><marquee> Welcome in CBA Computer Institute</marquee></font></h1></cc><br>
-    <dd>
-        <p align=""center"><img src="aa.png" width="500" breadth="500"></p></a>
-    </dd>
-    
+
+<!-- Navbar -->
+<header>
+  <div class="topbar">
+    <a class="brand" href="/">CBA Computer Institute</a>
+  
+    <!-- for mobile resposive three line show -->
+    <div class="hamburger" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Desktop nav -->
+    <nav role="navigation" aria-label="Main navigation" class="menu">
+      <a href="index.html">Home</a>
+      <div class="dropdown" aria-haspopup="true">
+        <a href="Courses.html">Services</a>
+        <ul aria-label="submenu">
+          <li><a href="Tally.html">Resul</a></li>
+          <li><a href="exam.html">Exams</a></li>
+          <li><a href="certificates.html">Certificates</a></li>
+          <li><a href="support.html">Support</a></li>
+         
+        </ul>
+      </div>
+      <a href="Certifications.html">Certifications</a>
+      <a href="details.html">Details</a>
+      <a href="admission.html">Admission</a>
+    </nav>
+
+    <form class="search desktop-search" role="search" action="search.html" method="get" aria-label="Site search">
+      <input name="q" type="search" placeholder="Search..." aria-label="Search site">
+      <button type="submit">Go</button>
+    </form>
+  </div>
+</header>
+
+<!--mobile nav-->
+<div class="mobile-nav" id="mobileNav">
+   <form class="search mobile-search" role="search" action="search.html" method="get" aria-label="Site search">
+      <input name="q" type="search" placeholder="Search..." aria-label="Search site">
+      <button type="submit">Go</button>
+    </form>
+    <a href="index.php">Home</a>
+    <a href="#categories">Courses</a>
+    <a href="check_resultData.html">Result</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
    
-       
-    
-    <footer>
-        <p>&copy; 2025 Education Portal. All rights reserved.</p>
-    </footer>
+  </div>
+  <div class="overlay" id="navOverlay"></div>
+
+<!-- Hero Section with Pro Carousel -->
+<section class="hero-carousel" id="home">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div class="slide-content">
+          <h1>Master Digital Skills & Get Certified</h1>
+          <p>Join CBA Computer Institute – Your Gateway to IT Career Success</p>
+          <a href="#courses" class="btn">Explore Courses</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="slide-content">
+          <h1>100% Job-Oriented Training</h1>
+          <p>Learn Tally, Web Design, Graphics, Hardware & Networking</p>
+          <a href="#contact" class="btn">Enroll Today</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <div class="slide-content">
+          <h1>Learn from Industry Experts</h1>
+          <p>Experienced Faculty • Modern Computer Lab • Live Projects</p>
+          <a href="#about" class="btn">Know More</a>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="swiper-slide">
+        <div class="slide-content">
+          <h1>Start Your IT Career in 3 Months!</h1>
+          <p>Affordable Fees • Flexible Batches • Placement Support</p>
+          <a href="tel:+919876543210" class="btn">Call Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation arrows (optional - bahut pro lagte hain) -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+
+    <!-- Pagination dots -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- Courses Section -->
+<section class="courses" id="courses">
+    <h2>Our Courses</h2>
+    <div class="courses-container">
+        <div class="course-card">
+            <h3>Office Operations Executive</h3>
+            <p>Learn MS Office, Typing, Email Management & Professional Skills.</p>
+        </div>
+        <div class="course-card">
+            <h3>Web Development</h3>
+            <p>HTML, CSS, JavaScript, Responsive Design & Frontend Projects.</p>
+        </div>
+        <div class="course-card">
+            <h3>Graphic Design</h3>
+            <p>Photoshop, Illustrator, Canva & Visual Design Skills.</p>
+        </div>
+        <div class="course-card">
+            <h3>Networking & Hardware</h3>
+            <p>Computer Networking, Troubleshooting & Hardware Maintenance.</p>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="about-text">
+        <h2>About CBA Computer Institute</h2>
+        <p>CBA Computer Institute is a leading educational institute providing professional computer training and certifications. Our mission is to empower students with modern digital skills for career growth.</p>
+    </div>
+    <div class="about-img">
+        <img src="images/computer lab.jpg" alt="Computer Lab">
+    </div>
+</section>
+
+<!-- Our founder -->
+
+<section class="founder">
+<h2>Our Founder</h2>
+
+
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+    <p>&copy; 2025 CBA Computer Institute. All Rights Reserved.</p>
+    <p>Contact: <a href="mailto:info@cbainstitute.com">info@cbainstitute.com</a> | Phone: +91 9876543210</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  function toggleMenu() {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('navOverlay');
+    const desktopSearch = document.querySelector('.desktop-search');
+
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('active');
+    overlay.classList.toggle('active');
+
+    // Hide desktop search when mobile nav is open
+    if (mobileNav.classList.contains('active')) {
+      desktopSearch.style.display = 'none';
+    } else {
+      desktopSearch.style.display = 'flex';
+    }
+  }
+
+  // Attach click event to hamburger and overlay
+  document.getElementById('hamburgerBtn').addEventListener('click', toggleMenu);
+  document.getElementById('navOverlay').addEventListener('click', toggleMenu);
+
+  // Pro Carousel Initialize
+const swiper = new Swiper('.swiper', {
+  loop: true,
+  autoplay: {
+    delay: 1000,
+    disableOnInteraction: false,
+  },
+  speed: 1000,
+  effect: 'fade',
+  fadeEffect: {
+    crossFade: true
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  grabCursor: true,
+});
+
+// Navbar Shrink on Scroll
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('header');
+  
+  if (window.scrollY > 10) {  // 80px scroll karne ke baad shrink ho jayega
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});  
+</script>
+
 </body>
 </html>

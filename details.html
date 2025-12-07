@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CBA Computer Institute Fees Page – Educational Information on India's Education System.">
+<meta name="keywords" content="Education in India, Fees, CBA Institute">
+<title>Fees - CBA Computer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Questrial&display=swap" rel="stylesheet">
+
+<!-- Bootstrap CDN for layout and sidebar -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Swiper JS CDN (if needed, but not using here) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Navbar (same as index) -->
+<header>
+  <div class="topbar">
+    <a class="brand" href="/">CBA Computer Institute</a>
+  
+    <!-- for mobile responsive three line show -->
+    <div class="hamburger" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Desktop nav -->
+    <nav role="navigation" aria-label="Main navigation" class="menu">
+      <a href="index.html">Home</a>
+      <div class="dropdown" aria-haspopup="true">
+        <a href="Courses.html">Courses</a>
+        <ul aria-label="submenu">
+          <li><a href="Tally.html">Tally</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+      <a href="Certifications.html">Certifications</a>
+      <a href="certificates.html">Services</a>
+      <a href="fees.html" class="active">Fees</a> <!-- Active for this page -->
+    </nav>
+
+    <form class="search desktop-search" role="search" action="search.html" method="get" aria-label="Site search">
+      <input name="q" type="search" placeholder="Search..." aria-label="Search site">
+      <button type="submit">Go</button>
+    </form>
+  </div>
+</header>
+
+<!-- Mobile nav (same as index) -->
+<div class="mobile-nav" id="mobileNav">
+   <form class="search mobile-search" role="search" action="search.html" method="get" aria-label="Site search">
+      <input name="q" type="search" placeholder="Search..." aria-label="Search site">
+      <button type="submit">Go</button>
+    </form>
+    <a href="index.html">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="check_resultData.html">Result</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="fees.html">Fees</a>
+  </div>
+  <div class="overlay" id="navOverlay"></div>
+
+<!-- Main Content with Sidebar -->
+<div class="container-fluid mt-5">
+  <div class="row">
+    <!-- Sidebar (left side with links to sections) -->
+    <aside class="col-md-3 sidebar" style="position: sticky; top: 100px; height: fit-content;">
+      <h3>Education Topics</h3>
+      <ul class="list-group">
+        <li class="list-group-item"><a href="#introduction">Introduction</a></li>
+        <li class="list-group-item"><a href="#history">History</a></li>
+        <li class="list-group-item"><a href="#current-system-school">School Education</a></li>
+        <li class="list-group-item"><a href="#current-system-higher">Higher Education</a></li>
+        <li class="list-group-item"><a href="#government-schemes">Government Schemes</a></li>
+        <li class="list-group-item"><a href="#key-statistics">Key Statistics</a></li>
+        <li class="list-group-item"><a href="#challenges">Challenges</a></li>
+        <li class="list-group-item"><a href="#reforms">Reforms</a></li>
+        <li class="list-group-item"><a href="#digital-education">Digital Education</a></li>
+        <li class="list-group-item"><a href="#other-info">Other Information</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="col-md-9">
+      <!-- Top Fees Check Option -->
+      <section class="fees-check mb-5">
+        <h2>Manage Your Fees</h2>
+        <p>Track and record monthly fees for all students at CBA Institute. Click below to check or update your fees details.</p>
+        <a href="students_fees.html" class="btn btn-primary">Check Your Fees</a>
+      </section>
+
+      <!-- Educational Information (long scrolling content) -->
+      <section id="introduction">
+        <h2>Introduction to Education in India</h2>
+        <p>India's education system is one of the largest in the world, with over 1.5 million schools, 8.5 million teachers, and 250 million children enrolled. It encompasses early childhood, primary, secondary, higher, and vocational education. The system is managed by central, state, and local governments, with significant reforms driven by policies like the National Education Policy (NEP) 2020. This page serves as a comprehensive resource on India's education landscape, covering history, structures, challenges, and future directions.</p>
+      </section>
+
+      <section id="history">
+        <h2>History of Education in India</h2>
+        <p>Education in India dates back to ancient times with the Gurukula system, where students lived with gurus. Institutions like Taxila (8th century BCE) and Nalanda were global centers for learning. Islamic influences introduced madrassas, blending subjects like philosophy and mathematics. British colonial rule, through the English Education Act of 1835 (Macaulayism), prioritized English-medium education for an elite class, neglecting mass education. Christian missions established schools and promoted vernacular education. Post-independence in 1947, commissions like Radhakrishnan (1948–49) and Kothari (1964–66) shaped modern policies. The National Policy on Education (1986) emphasized science and traditional elements. The RTE Act (2009) made education a fundamental right, and NEP 2020 introduced a 5+3+3+4 structure.</p>
+        <p>In the 1950s, community development programs expanded rural education. The 1990s saw Supreme Court interventions leading to Article 21A. Pre-independence, deaf education focused on oral methods; post-independence, services grew but challenges remain.</p>
+      </section>
+
+      <section id="current-system-school">
+        <h2>Current System: School Education</h2>
+        <p>School education includes pre-primary (ages 3-6, optional via Anganwadi), primary (ages 6-11, Classes I-V), lower secondary (ages 11-14, Classes VI-VIII), and higher secondary (ages 14-18, Classes IX-XII). NEP 2020 shifts to 5+3+3+4: foundational (activity-based), preparatory, middle, and secondary stages. Subjects cover math, science, languages, and vocational topics. Board exams at Classes 10 and 12 are conducted by CBSE, CISCE, or state boards. Enrollment is high at primary (95%), but drops at secondary (69%). Vocational integration starts at secondary level.</p>
+        <p>Types of schools: Government (83% elementary), aided private, unaided private (English-medium). Home-schooling is legal. Reservations up to 50% for SC/ST/OBC.</p>
+      </section>
+
+      <section id="current-system-higher">
+        <h2>Current System: Higher Education</h2>
+        <p>Higher education includes bachelor's, master's, and PhD in various fields. India has over 900 universities and 40,000 colleges. Gross Enrolment Ratio (GER) is 26.3% (2019), targeting 50% by 2035 via NEP. NEP introduces 4-year multidisciplinary degrees with multiple exits. Key institutions: IITs, NITs, AIIMS. Distance learning and vocational diplomas are available. Enrolment: 1.74 million in vocational (2013). No dedicated deaf universities; higher ed for DHH ends at school level.</p>
+        <p>Market size: Education sector to reach US$ 313 billion by FY30, with K-12 at US$ 125.8 billion by FY32.</p>
+      </section>
+
+      <section id="government-schemes">
+        <h2>Government Schemes and Policies</h2>
+        <p>NEP 2020: Holistic development, foundational literacy by 2025, mother tongue medium. RTE Act (2009): Free education ages 6-14. SSA: Universal elementary access. RMSA: Secondary expansion. Midday Meal: Nutrition for 120 million children. Beti Bachao Beti Padhao: Girl child education. Samagra Shiksha: Integrated scheme. Mahila Samakhya: Women's education. Saakshar Bharat: Adult literacy. National Scholarship Portal: For minorities. NLCPR: North-East infrastructure. Bharat Padhe Online: Online learning.</p>
+        <p>UNICEF partners with governments in 17 states, focusing on ECCE, out-of-school children, and quality learning.</p>
+      </section>
+
+      <section id="key-statistics">
+        <h2>Key Statistics</h2>
+        <p>Literacy (2011): 74.04% overall (males 82.1%, females 65.5%). Youth literacy (15-24): 81.1%. Enrollment: Primary 93%, secondary 69%, higher 25%. Out-of-school: 6.1 million (2014, down from 13.46 million in 2006). Dropout: 29% before elementary completion; 50% adolescents don't finish secondary. Pre-school: 20 million not attending. Institutions: 1.4 million schools, 907 universities. Teachers: 5.8 million elementary. Budget: 2.9% GDP. Private enrollment: 29%. Edtech market: US$ 30 billion by 2031.</p>
+        <p>Facilities (ASER 2016): 68.7% usable toilets, 75.5% libraries. FDI: US$ 9.98 billion (2000-2025).</p>
+      </section>
+
+      <section id="challenges">
+        <h2>Challenges</h2>
+        <p>Access/Equity: Rural-urban, gender, caste gaps; 2.8% ages 6-14 unenrolled (2018). Quality: Rote learning; 50% Class V can't read Class II text (ASER 2019). Employability: Half graduates unemployable. Infrastructure: High PTR, 25% teacher absenteeism. Dropouts: Economic factors, early marriage. Higher ed: Low GER, corruption, unaccredited institutions. DHH: Oralism dominance, no sign language. Mental health: Exam stress, suicides. Digital divide: Urban-rural access. Funding: Below 6% GDP target.</p>
+        <p>UNICEF notes 50 million primary children lack grade-level learning; marginalized most affected.</p>
+      </section>
+
+      <section id="reforms">
+        <h2>Reforms</h2>
+        <p>NEP 2020: Flexible curriculum, vocational from Class 6, school complexes. RTE amendments: Scrap no-detention. Teacher training: 4-year B.Ed, Diksha platform. Regulation: HECI, NIRF rankings. IoE: Autonomy for top institutions. EQUIP: Global standards by 2030. Coaching laws: Post-suicide regulations. Inclusive: For disabilities/minorities. Adult ed: National tutors program. R&D: NRF funding.</p>
+        <p>Government: NTA for entrances, HEFA for infrastructure (Rs. 1 lakh cr).</p>
+      </section>
+
+      <section id="digital-education">
+        <h2>Digital Education Initiatives</h2>
+        <p>Edtech growth: US$ 700-800 million (2021) to US$ 30 billion (2031); 82% institutions hybrid (2025). AI for personalized learning (FY26 budget Rs. 500 crore). COVID-19 boosted online: Bharat Padhe Online, MOOCs. NIOS: Largest open schooling. UGC: Online degrees. Challenges: Digital divide, inequities. UNICEF: Improves access for marginalized.</p>
+        <p>National Education Technology Forum: ICT integration.</p>
+      </section>
+
+      <section id="other-info">
+        <h2>Other Relevant Information</h2>
+        <p>NGOs: 79,960 support multigrade teaching, community links. Vocational: NSQF integration; <5% workforce trained. Economic impact: Demographic dividend via education. Christian missions: Historical literacy role. Reservation: Varies by state. Pyramidal structure: Pre-primary to higher ed, SDG alignment. Criticisms: NEP lacks funding details, risks politicization.</p>
+        <p>UNICEF: Focus on 17 states, MWCD partnerships for ECCE/out-of-school reduction.</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Footer (same as index) -->
+<footer id="contact">
+    <p>&copy; 2025 CBA Computer Institute. All Rights Reserved.</p>
+    <p>Contact: <a href="mailto:info@cbainstitute.com">info@cbainstitute.com</a> | Phone: +91 9876543210</p>
+</footer>
+
+<!-- Scripts (same as index) -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  function toggleMenu() {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('navOverlay');
+    const desktopSearch = document.querySelector('.desktop-search');
+
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('active');
+    overlay.classList.toggle('active');
+
+    if (mobileNav.classList.contains('active')) {
+      desktopSearch.style.display = 'none';
+    } else {
+      desktopSearch.style.display = 'flex';
+    }
+  }
+
+  document.getElementById('hamburgerBtn').addEventListener('click', toggleMenu);
+  document.getElementById('navOverlay').addEventListener('click', toggleMenu);
+
+  // Navbar Shrink on Scroll
+  window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });  
+</script>
+
+</body>
+</html>
