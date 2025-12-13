@@ -4,138 +4,219 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Students Fees - CBA Computer Institute</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;600&family=DM+Serif+Text:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Questrial&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<!-- Tera pura navbar same -->
-<header>
-  <div class="topbar">
-    <a class="brand" href="index.html">CBA Computer Institute</a>
-    <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
-    <nav class="menu">
-      <a href="index.html">Home</a>
-      <div class="dropdown"><a href="Courses.html">Courses</a><ul><li><a href="Tally.html">Tally</a></li><li><a href="booking.html">Booking</a></li><li><a href="support.html">Support</a></li></ul></div>
-      <a href="Certifications.html">Certifications</a>
-      <a href="certificates.html">Services</a>
-      <a href="fees.html">Fees</a>
-      <a href="students_fees.html" class="active">Students Fees</a>
-    </nav>
-    <form class="search desktop-search" action="search.html"><input name="q" type="search" placeholder="Search..."><button>Go</button></form>
-  </div>
-</header>
-
-<div class="mobile-nav" id="mobileNav"> <!-- tera mobile menu same --> </div>
-<div class="overlay" id="navOverlay"></div>
-
-<div class="container-fluid mt-5">
-  <div class="row">
-    <!-- Sidebar same -->
-    <aside class="col-md-3 sidebar" style="position: sticky; top: 100px;">
-      <h3>Fees & Funding Topics</h3>
-      <ul class="list-group">
-        <li class="list-group-item"><a href="#intro-funding">Education Funding Intro</a></li>
-        <li class="list-group-item"><a href="#scholarships">Scholarships</a></li>
-        <li class="list-group-item"><a href="#fees-structures">Fees Structures</a></li>
-        <li class="list-group-item"><a href="#economic-impact">Economic Impact</a></li>
-        <li class="list-group-item"><a href="#government-budgets">Govt Budgets</a></li>
-      </ul>
-    </aside>
-
-    <main class="col-md-9">
-      <section class="students-table mb-5">
-        <h2 class="text-primary">Admitted Students List</h2>
-        <p>All students from Google Sheet will appear here with Sr.No. and View button.</p>
-
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover align-middle">
-            <thead class="table-primary">
-              <tr>
-                <th>Sr.No.</th>
-                <th>Student Name</th>
-                <th>Course</th>
-                <th class="text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody id="studentsTableBody">
-              <tr><td colspan="4" class="text-center">Loading students from Google Sheet...</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Baki sab content same rahega -->
-      <section id="intro-funding"><h2>Introduction to Education Funding in India</h2><p>...</p></section>
-      <!-- baaki sections same -->
-    </main>
-  </div>
-</div>
-
-<footer id="contact">
-  <p>© 2025 CBA Computer Institute. All Rights Reserved.</p>
-  <p>Contact: info@cbainstitute.com | Phone: +91 9876543210</p>
-</footer>
-
-<script>
-// Google Sheet se data load karne ka code
-const SHEET_ID = "1fqeDoVVOFC-BIgjqRIF3MvSgVNsIHqtYsEWOF9yNZ5U";  // ← Tera Sheet ID
-const SHEET_NAME = "Sheet1";
-const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
-
-function loadStudents() {
-  const tbody = document.getElementById('studentsTableBody');
-  tbody.innerHTML = '<tr><td colspan="4" class="text-center"><div class="spinner-border text-primary"></div> Loading...</td></tr>';
-
-  fetch(url)
-    .then(res => res.text())
-    .then(text => {
-      const json = JSON.parse(text.substr(47).slice(0, -2));
-      tbody.innerHTML = '';
-
-      if (!json.table || json.table.rows.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No students admitted yet</td></tr>';
-        return;
-      }
-
-      json.table.rows.forEach((row, index) => {
-        const cells = row.c || [];
-        const name = cells[0]?.v || '';
-        const course = cells[1]?.v || '';
-
-        if (name && course) {
-          tbody.innerHTML += `
-            <tr>
-              <td class="text-center fw-bold">${index + 1}</td>
-              <td>${name}</td>
-              <td>${course}</td>
-              <td class="text-center">
-                <a href="fees_submit.html?name=${encodeURIComponent(name)}&course=${encodeURIComponent(course)}" 
-                   class="btn btn-info btn-sm">View Fees</a>
-              </td>
-            </tr>
-          `;
-        }
-      });
-    })
-    .catch(err => {
-      tbody.innerHTML = `<tr><td colspan="4" class="text-danger text-center">Error loading data: ${err.message}</td></tr>`;
-    });
+<style>
+  /* Sidebar fix for mobile */
+.sidebar {
+  position: sticky !important;   /* ← sticky hata diya mobile pe */
+  top: auto !important;
+  height: auto !important;
+  margin-bottom: 30px;           /* ← content ke neeche space */
 }
 
-// Page load hone pe data load karo
-window.addEventListener('load', loadStudents);
+/* Desktop pe sticky rahega, mobile pe nahi */
+@media (min-width: 768px) {
+  .sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+  }
+}
+</style>
+</head>
+<body>
+  <script src="scripts.js"></script>
 
-// Tera navbar script same rahega
-function toggleMenu() { /* tera code */ }
-document.getElementById('hamburgerBtn')?.addEventListener('click', toggleMenu);
-document.getElementById('navOverlay')?.addEventListener('click', toggleMenu);
-window.addEventListener('scroll', () => {
-  document.querySelector('header')?.classList.toggle('scrolled', window.scrollY > 10);
-});
-</script>
+  <!-- Header load -->
+  <div id="headerContainer"></div>
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <aside class="col-md-3 sidebar" style="position: sticky; top: 100px;">
+        <h3>Fees & Funding Topics</h3>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="#intro-funding">Education Funding Intro</a></li>
+          <li class="list-group-item"><a href="#scholarships">Scholarships</a></li>
+          <li class="list-group-item"><a href="#fees-structures">Fees Structures</a></li>
+          <li class="list-group-item"><a href="#economic-impact">Economic Impact</a></li>
+          <li class="list-group-item"><a href="#government-budgets">Govt Budgets</a></li>
+        </ul>
+      </aside>
+
+      <main class="col-md-9">
+        <section class="students-table mb-5">
+          <h2 class="text-primary">Admitted Students List</h2>
+          <p>All active students (Course not complete). Click View Fees to see record.</p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+              <thead class="table-primary">
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Student Name</th>
+                  <th>Course</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody">
+                <tr><td colspan="4" class="text-center">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Fees Record Modal -->
+  <div class="modal fade" id="feesRecordModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h5 class="modal-title" id="modalStudentName">Fees Record</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Course</th>
+                  <th>Month</th>
+                  <th>Submit Date</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody id="feesRecordBody">
+                <tr><td colspan="5" class="text-center">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer load -->
+  <div id="footerContainer"></div>
+
+  <script>
+    const ADMISSION_SHEET_ID = "1fqeDoVVOFC-BIgjqRIF3MvSgVNsIHqtYsEWOF9yNZ5U";  // admission sheet
+    const FEES_SHEET_ID = "1aqWu7wM0i3oHXVbw__LRmbBiVnXOrp38tPACMatriyU";  // fees_record sheet
+
+    function loadStudents() {
+      const tbody = document.getElementById('studentsTableBody');
+      tbody.innerHTML = '<tr><td colspan="4" class="text-center">Loading...</td></tr>';
+
+      const url = `https://docs.google.com/spreadsheets/d/${ADMISSION_SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
+
+      fetch(url)
+        .then(res => res.text())
+        .then(text => {
+          const json = JSON.parse(text.substr(47).slice(0, -2));
+          tbody.innerHTML = '';
+
+          if (!json.table || json.table.rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="text-muted text-center">No students admitted yet</td></tr>';
+            return;
+          }
+
+          json.table.rows.forEach((row, index) => {
+            const cells = row.c || [];
+            const name = cells[0]?.v || '';
+            const course = cells[1]?.v || '';
+            const status = cells[5]?.v || '';  // F column Course Status
+
+            if (name && course && status.toLowerCase() !== 'complete') {
+              tbody.innerHTML += `
+                <tr>
+                  <td class="text-center fw-bold">${index + 1}</td>
+                  <td>${name}</td>
+                  <td>${course}</td>
+                  <td class="text-center">
+                    <button class="btn btn-info btn-sm viewBtn" data-name="${name}" data-course="${course}">View Fees</button>
+                  </td>
+                </tr>
+              `;
+            }
+          });
+
+          document.querySelectorAll('.viewBtn').forEach(btn => {
+            btn.addEventListener('click', loadFeesRecord);
+          });
+        });
+    }
+
+    function loadFeesRecord(e) {
+      const name = e.target.dataset.name;
+      const course = e.target.dataset.course;
+      const tbody = document.getElementById('feesRecordBody');
+      document.getElementById('modalStudentName').textContent = `${name} - Fees Record`;
+
+      tbody.innerHTML = '<tr><td colspan="5" class="text-center">Loading...</td></tr>';
+
+      const modal = new bootstrap.Modal(document.getElementById('feesRecordModal'));
+      modal.show();
+
+      const feesUrl = `https://docs.google.com/spreadsheets/d/${FEES_SHEET_ID}/gviz/tq?tqx=out:json&sheet=Fees2025`;
+      const dateUrl = `https://docs.google.com/spreadsheets/d/${FEES_SHEET_ID}/gviz/tq?tqx=out:json&sheet=MonthDate`;
+
+      Promise.all([fetch(feesUrl), fetch(dateUrl)])
+        .then(responses => Promise.all(responses.map(r => r.text())))
+        .then(([feesText, dateText]) => {
+          const feesJson = JSON.parse(feesText.substr(47).slice(0, -2));
+          const dateJson = JSON.parse(dateText.substr(47).slice(0, -2));
+
+          const feesRow = feesJson.table.rows.find(r => (r.c[1]?.v || '') === name);
+          const dateRow = dateJson.table.rows.find(r => (r.c[1]?.v || '') === name);
+
+          tbody.innerHTML = '';
+
+          const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          let hasData = false;
+
+          months.forEach((month, i) => {
+            const amount = feesRow && feesRow.c[i+4] ? feesRow.c[i+4].v : '-';
+            let submitDate = '-';
+            if (dateRow && dateRow.c[i+2]) {
+              if (dateRow.c[i+2].f) submitDate = dateRow.c[i+2].f;
+              else if (dateRow.c[i+2].v) {
+                const d = new Date(dateRow.c[i+2].v);
+                submitDate = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+              }
+            }
+
+            if (amount !== '-' || submitDate !== '-') hasData = true;
+
+            tbody.innerHTML += `
+              <tr>
+                <td>${name}</td>
+                <td>${course}</td>
+                <td>${month}</td>
+                <td>${submitDate}</td>
+                <td>${amount !== '-' ? '₹' + amount : '-'}</td>
+              </tr>
+            `;
+          });
+
+          if (!hasData) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-muted text-center">No fees data found</td></tr>';
+          }
+        })
+        .catch(err => {
+          tbody.innerHTML = `<tr><td colspan="5" class="text-danger text-center">Error: ${err.message}</td></tr>`;
+        });
+    }
+
+    window.addEventListener('load', loadStudents);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

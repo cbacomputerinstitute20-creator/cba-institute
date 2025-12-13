@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+  <!-- SEO -->
+  <title>Student Certificate Verification | CBA Computer Institute Kundeshwari</title>
+  <meta name="description" content="Verify student certificates of CBA Computer Institute Kundeshwari. ISO 9001:2015 Certified institute. Enter Student ID and Name to check certificate authenticity." />
+  <meta name="keywords" content="CBA Computer Institute, Student Verification, Certificate Verification, ISO Certified Institute, Kundeshwari Computer Institute" />
+  <meta name="author" content="CBA Computer Institute" />
+
+  <!-- Fonts & Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6f9;
+    }
+
+    .verify-section {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    .verify-title {
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .badge-iso {
+      background: #198754;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .result-box {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #f8f9fa;
+    }
+
+    .verified {
+      border-left: 5px solid #198754;
+    }
+
+    .not-verified {
+      border-left: 5px solid #dc3545;
+    }
+
+    .secure-note {
+      font-size: 14px;
+      color: #6c757d;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div id="headerContainer"></div>
+
+  <main class="container my-5">
+    <div class="verify-section">
+      <div class="text-center mb-4">
+        <span class="badge-iso">ISO 9001:2015 Certified</span>
+        <h1 class="verify-title">Student Certificate Verification</h1>
+        <p class="text-muted">
+          Verify the authenticity of certificates issued by  
+          <strong>CBA Computer Institute, Kundeshwari</strong>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Student ID</label>
+        <input type="text" id="studentId" class="form-control" placeholder="Enter Student ID">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Student Name</label>
+        <input type="text" id="studentName" class="form-control" placeholder="Enter Student Name">
+      </div>
+
+      <div class="d-grid">
+        <button class="btn btn-primary btn-lg" onclick="verifyStudent()">Verify Certificate</button>
+      </div>
+
+      <div id="result" class="result-box d-none"></div>
+
+      <div class="secure-note text-center">
+        🔒 This verification system is maintained by CBA Computer Institute  
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footerContainer"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Common JS -->
+  <script src="scripts.js"></script>
+
+<script>
+const SHEET_ID = "1aqWu7wM0i3oHXVbw__LRmbBiVnXOrp38tPACMatriyU";
+const SHEET_NAME = "VerificationData";
+
+function verifyStudent() {
+  const studentId = document.getElementById("studentId").value.trim();
+  const studentName = document.getElementById("studentName").value.trim().toLowerCase();
+  const result = document.getElementById("result");
+
+  result.classList.remove("d-none");
+  result.innerHTML = "🔄 Verifying student record...";
+
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
+
+  fetch(url)
+    .then(res => res.text())
+    .then(text => {
+      const json = JSON.parse(text.substring(47).slice(0, -2));
+      const rows = json.table.rows;
+
+      let found = null;
+
+      rows.forEach(r => {
+        const id = r.c[0]?.v?.toString().trim();
+        const name = r.c[1]?.v?.toLowerCase().trim();
+
+        if (id === studentId && name === studentName) {
+          found = {
+            name: r.c[1]?.v,
+            fatherName: r.c[2]?.v,
+            course: r.c[3]?.v,
+            duration: r.c[4]?.v,
+            grade: r.c[5]?.v,
+            regNo: r.c[6]?.v,
+            certNo: r.c[7]?.v
+          };
+        }
+      });
+
+      if (found) {
+        result.className = "result-box verified";
+        result.innerHTML = `
+          <h5 class="text-success">✅ Certificate Verified Successfully</h5>
+          <p><strong>Name:</strong> ${found.name}</p>
+          <p><strong>Father's Name:</strong> ${found.fatherName}</p>
+          <p><strong>Course:</strong> ${found.course}</p>
+          <p><strong>Duration:</strong> ${found.duration}</p>
+          <p><strong>Grade:</strong> ${found.grade}</p>
+          <p><strong>Registration No:</strong> ${found.regNo}</p>
+          <p><strong>Certificate No:</strong> ${found.certNo}</p>
+        `;
+      } else {
+        result.className = "result-box not-verified";
+        result.innerHTML = `
+          <h5 class="text-danger">❌ Verification Failed</h5>
+          <p>No matching student record found.</p>
+        `;
+      }
+    })
+    .catch(err => {
+      result.className = "result-box not-verified";
+      result.innerHTML = "❌ Error loading verification data";
+      console.error(err);
+    });
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit Fees - CBA Computer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header load -->
+<div id="headerContainer"></div>
+
+<section class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Submit Student Fees (Admin Only)</h3>
+        </div>
+        <div class="card-body">
+          <form id="feesForm">
+            <div class="mb-3">
+              <label class="form-label">Student Name *</label>
+              <select class="form-select" id="studentName" required>
+                <option value="">Loading students...</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Course *</label>
+              <select class="form-select" id="course" required>
+                <option value="">Select Course</option>
+                <option>Office Operations Executive</option>
+                <option>Web Development</option>
+                <option>Graphic Design</option>
+                <option>Networking & Hardware</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Month *</label>
+              <select class="form-select" id="month" required>
+                <option value="">Select Month</option>
+                <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+                <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+                <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Date *</label>
+              <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Fees Amount *</label>
+              <input type="number" class="form-control" id="amount" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Admin Secret Code *</label>
+              <input type="password" class="form-control" id="secret" placeholder="CBAFEE2025" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Submit Fees</button>
+          </form>
+
+          <div id="successAlert" class="alert alert-success mt-4 text-center d-none">
+            <h4>Fees Submitted Successfully!</h4>
+            <p>Data saved in fees_record sheet.</p>
+          </div>
+          <div id="errorAlert" class="alert alert-danger mt-4 text-center d-none">
+            <h4>Error!</h4>
+            <p id="errorMsg"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footerContainer"></div>
+
+<script src="scripts.js"></script>
+<script>
+  const ADMISSION_SHEET_ID = "1fqeDoVVOFC-BIgjqRIF3MvSgVNsIHqtYsEWOF9yNZ5U";  // admission sheet
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDPCMNC8pDU6d7dzRu6cM_5MT9U24aV5tfw-8UoCnATmW_51ec5ko7d_CYU-sZqRBl/exec";  // NAYI DEPLOYMENT KI URL DAAL
+
+  // Load student names (complete nahi hone wale)
+  fetch(`https://docs.google.com/spreadsheets/d/${ADMISSION_SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`)
+    .then(r => r.text())
+    .then(t => {
+      const json = JSON.parse(t.substr(47).slice(0, -2));
+      const select = document.getElementById('studentName');
+      select.innerHTML = '<option value="">Select Student</option>';
+      json.table.rows.forEach(row => {
+        const cells = row.c || [];
+        const name = cells[0]?.v || '';
+        const status = cells[5]?.v || '';  // F column = Course Status
+        if (name && status.toLowerCase() !== 'complete') {
+          const opt = document.createElement('option');
+          opt.value = name;
+          opt.textContent = name;
+          select.appendChild(opt);
+        }
+      });
+    });
+
+  document.getElementById('feesForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const data = {
+      name: document.getElementById('studentName').value,
+      course: document.getElementById('course').value,
+      month: document.getElementById('month').value,
+      date: document.getElementById('date').value,
+      amount: document.getElementById('amount').value,
+      secret: document.getElementById('secret').value,
+      action: "submit_fee"
+    };
+
+    document.getElementById('successAlert').classList.add('d-none');
+    document.getElementById('errorAlert').classList.add('d-none');
+
+    fetch(WEB_APP_URL, {
+  method: 'POST',
+  mode: 'no-cors',  // ← yeh daal de
+  body: JSON.stringify(data)
+})
+.then(() => {
+  document.getElementById('successAlert').classList.remove('d-none');
+  this.reset();
+  setTimeout(() => document.getElementById('successAlert').classList.add('d-none'), 5000);
+})
+.catch(() => {
+  alert("Internet issue ya secret code galat! Data save nahi hua.");
+});
+  });
+</script>
+</body>
+</html>
