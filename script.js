@@ -1,30 +1,3 @@
-   function toggleMenu() {
-  const mobileNav = document.getElementById('mobileNav');
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const overlay = document.getElementById('navOverlay');
-  if (mobileNav && hamburgerBtn && overlay) {
-    mobileNav.classList.toggle('active');
-    hamburgerBtn.classList.toggle('open');
-    overlay.classList.toggle('active');
-  } else {
-    console.error('One or more elements not found!');
-  }
-}
-
-// Close mobile nav when a link is clicked
-document.querySelectorAll('.mobile-nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    const mobileNav = document.getElementById('mobileNav');
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const overlay = document.getElementById('navOverlay');
-    if (mobileNav && hamburgerBtn && overlay) {
-      mobileNav.classList.remove('active');
-      hamburgerBtn.classList.remove('open');
-      overlay.classList.remove('active');
-    }
-  });
-});
-
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {

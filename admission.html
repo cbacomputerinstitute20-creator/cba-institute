@@ -13,35 +13,8 @@
 </head>
 <body>
 
-<!-- Tera pura navbar same rahega -->
-<header>
-  <div class="topbar">
-    <a class="brand" href="index.html">CBA Computer Institute</a>
-    <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
-    <nav role="navigation" class="menu">
-      <a href="index.html">Home</a>
-      <div class="dropdown" aria-haspopup="true">
-        <a href="Courses.html">Courses</a>
-        <ul aria-label="submenu">
-          <li><a href="Tally.html">Tally</a></li>
-          <li><a href="booking.html">Booking</a></li>
-          <li><a href="support.html">Support</a></li>
-        </ul>
-      </div>
-      <a href="Certifications.html">Certifications</a>
-      <a href="certificates.html">Services</a>
-      <a href="fees.html">Fees</a>
-      <a href="admission.html" class="active">Admission</a>
-    </nav>
-    <form class="search desktop-search" role="search" action="search.html" method="get">
-      <input name="q" type="search" placeholder="Search..." aria-label="Search site">
-      <button type="submit">Go</button>
-    </form>
-  </div>
-</header>
-
-<div class="mobile-nav" id="mobileNav"> <!-- mobile menu same --> </div>
-<div class="overlay" id="navOverlay"></div>
+<!-- Header load hoga yahan -->
+<div id="headerContainer"></div>
 
 <!-- Admission Form -->
 <section class="container mt-5 mb-5">
@@ -121,21 +94,11 @@
   </div>
 </div>
 
-<!-- Footer -->
-<footer id="contact">
-    <p>© 2025 CBA Computer Institute. All Rights Reserved.</p>
-    <p>Contact: <a href="mailto:info@cbainstitute.com">info@cbainstitute.com</a> | Phone: +91 9876543210</p>
-</footer>
+<!-- Footer load hoga yahan -->
+<div id="footerContainer"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="scripts.js"></script>
 <script>
-  // Navbar code (tera same rahega)
-  function toggleMenu() { /* tera code */ }
-  document.getElementById('hamburgerBtn').addEventListener('click', toggleMenu);
-  document.getElementById('navOverlay').addEventListener('click', toggleMenu);
-  window.addEventListener('scroll', () => {
-    document.querySelector('header').classList.toggle('scrolled', window.scrollY > 10);
-  });
 
   // MAIN MAGIC — Submit handle with modal
   document.getElementById('admissionForm').addEventListener('submit', function(e) {
